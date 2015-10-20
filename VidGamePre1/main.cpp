@@ -1,8 +1,10 @@
-#include <SDL/SDL.h>
+#include <iostream>
+#include "MainVidGame.h"
 
 int main(int argc, char** argv) {
 
-	SDL_Init(SDL_INIT_EVERYTHING);
+	MainVidGame mainVidGame;
+	mainVidGame.run();
 
 	return 0;
 
