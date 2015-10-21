@@ -5,6 +5,7 @@
 
 
 
+
 MainVidGame::MainVidGame()
 {
 	_window = nullptr;
@@ -31,6 +32,8 @@ MainVidGame::~MainVidGame()
 
 void MainVidGame::run() {
 	initSystems();
+
+	_sprite.init(-1.0f, -1.0f, 1.0f, 1.0f);
 
 	gameLoop();
 
@@ -94,16 +97,7 @@ void MainVidGame::drawGame() {
 	// Clears the color and depth buffers getting it ready for the next frame to pring
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glEnableClientState(GL_COLOR_ARRAY);
-
-	// Down a dirty way to draw a triagle
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex2f(-1, -1);
-	glVertex2f(0, -1);
-	glVertex2f(0, 0);
-
-	glEnd();
+	_sprite.draw();
 
 	// Swap our buffers and draw everything to the screen
 	SDL_GL_SwapWindow(_window);
