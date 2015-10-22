@@ -1,11 +1,12 @@
 #include "MainVidGame.h"
-
+#include <Errors.h>
 #include <iostream>
 #include <string>
 
 
 
 
+// Constructor, just intializes prvate member veriables
 MainVidGame::MainVidGame()
 {
 	_window = nullptr;
@@ -15,21 +16,13 @@ MainVidGame::MainVidGame()
 
 }
 
-void fatalError(std::string errorString) {
-
-	std::cout << errorString << std::endl;
-	std::cout << "Enter any key to quit....";
-	int tmp;
-	std::cin >> tmp;
-	SDL_Quit();
-	
-}
-
+//Destructor
 MainVidGame::~MainVidGame()
 {
 }
 
 
+//This runs the game
 void MainVidGame::run() {
 	initSystems();
 
