@@ -1,7 +1,9 @@
 #include "MainVidGame.h"
-#include <Errors.h>
+#include "Errors.h"
+
 #include <iostream>
 #include <string>
+
 
 
 
@@ -56,6 +58,15 @@ void MainVidGame::initSystems(){
 
 	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
+	initShaders();
+
+}
+
+
+void MainVidGame::initShaders() {
+	_colorProgram.compileShaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
+	_colorProgram.addAttribute("vertexPosition");
+	_colorProgram.linkShader();
 }
 
 void MainVidGame::gameLoop() {
@@ -90,7 +101,11 @@ void MainVidGame::drawGame() {
 	// Clears the color and depth buffers getting it ready for the next frame to pring
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	_colorProgram.user();
+
 	_sprite.draw();
+
+	_colorProgram.unuse();
 
 	// Swap our buffers and draw everything to the screen
 	SDL_GL_SwapWindow(_window);
